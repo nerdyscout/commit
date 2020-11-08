@@ -45,9 +45,9 @@ def run():
     debug(git(['checkout', '-B', branch]))
     debug(git(add_args))
     debug(git(['commit', '-m', commit_message], retcode=None))
-    debug(git(['reset', '--hard', 'HEAD^1']))
+    debug(git(['reset', '.']))
     if rebase == 'true':
-        debug(git(['pull', '--rebase', '--autostash', 'origin', branch]))
+        debug(git(['pull', '--rebase', 'origin', branch]))
     debug(git(['push', '--follow-tags', '--set-upstream', 'origin', branch]))
 
 if __name__ == '__main__':
