@@ -42,12 +42,12 @@ def run():
     if files:
         debug(f"Files: {files}")
         add_args.extend(files.strip("'").split())
-    if rebase == 'true':
-        debug(git(['pull', '--rebase', '--autostash', 'origin', branch]))
     debug(git(['checkout', '-B', branch]))
     debug(git(add_args))
     debug(git(['commit', '-m', commit_message], retcode=None))
     debug(git(['reset', '--hard', 'HEAD^1']))
+    if rebase == 'true':
+        debug(git(['pull', '--rebase', '--autostash', 'origin', branch]))
     debug(git(['push', '--follow-tags', '--set-upstream', 'origin', branch]))
 
 if __name__ == '__main__':
